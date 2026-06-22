@@ -1,0 +1,10 @@
+# Upload pengguna (jangan commit foto hasil upload admin)
+uploads/images/*
+!uploads/images/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

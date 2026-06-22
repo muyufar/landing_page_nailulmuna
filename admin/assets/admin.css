@@ -1,0 +1,83 @@
+:root {
+    --sidebar-bg: #0a1628;
+    --sidebar-w: 260px;
+    --accent: #0d6e4f;
+}
+
+body.admin-body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    padding: 1.25rem 0;
+    overflow-y: auto;
+}
+
+.admin-sidebar .brand {
+    color: #fff;
+    font-weight: 700;
+    padding: 0 1.25rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.admin-sidebar .brand span { color: #d4a017; }
+
+.admin-sidebar .nav-link {
+    color: rgba(255,255,255,0.75);
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
+    border-left: 3px solid transparent;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+    border-left-color: #d4a017;
+}
+
+.admin-main {
+    margin-left: var(--sidebar-w);
+    padding: 1.5rem 2rem;
+}
+
+.admin-topbar {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.card-admin {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.preview-thumb {
+    max-width: 120px;
+    max-height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+@media (max-width: 991px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    .admin-sidebar.show { transform: translateX(0); }
+    .admin-main { margin-left: 0; }
+}
