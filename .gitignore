@@ -8,3 +8,16 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Buku tamu — upload foto tamu
+buku-tamu/public/uploads/*
+!buku-tamu/public/uploads/.gitkeep
+buku-tamu/storage/wa_cron.lock
+
+# Undangan — upload logo, ornamen, font
+undangan/assets/uploads/logos/*
+!undangan/assets/uploads/logos/.gitkeep
+undangan/assets/uploads/ornaments/*
+!undangan/assets/uploads/ornaments/.gitkeep
+undangan/assets/uploads/fonts/*
+!undangan/assets/uploads/fonts/.gitkeep

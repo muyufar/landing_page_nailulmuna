@@ -6,9 +6,12 @@ $s = content()->getSettings();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf_token'] ?? '')) {
     try {
-        $img = handle_upload('muassis_file', 'images', $s['muassis_image'] ?? null);
-        if (!empty($_POST['muassis_image_url'])) {
+        if (has_file_upload('muassis_file')) {
+            $img = handle_upload('muassis_file', 'images', $s['muassis_image'] ?? null);
+        } elseif (!empty($_POST['muassis_image_url'])) {
             $img = trim($_POST['muassis_image_url']);
+        } else {
+            $img = $s['muassis_image'] ?? '';
         }
         content()->saveSettings([
             'muassis_name' => trim($_POST['muassis_name'] ?? ''),

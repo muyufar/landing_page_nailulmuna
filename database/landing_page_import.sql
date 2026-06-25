@@ -1,15 +1,11 @@
 -- ============================================================
 -- Landing Page — Import Sekali Jalan (phpMyAdmin)
 -- ============================================================
--- Cara pakai:
---   1. Buka http://localhost/phpmyadmin
---   2. Tab "Import" (tidak perlu pilih database dulu)
---   3. Pilih file ini → Klik "Go" / "Kirim"
+-- PENTING: Gunakan file gabungan terbaru:
+--   database/import_semua.sql
+-- (landing_page + buku_tamu + haflah_undangan dalam 1 import)
 --
--- Setelah import:
---   Website : http://localhost/landing%20page/
---   Admin   : http://localhost/landing%20page/panel.php
---   Login   : admin / admin123  (ganti setelah masuk!)
+-- File ini hanya untuk database landing_page saja.
 -- ============================================================
 
 SET NAMES utf8mb4;

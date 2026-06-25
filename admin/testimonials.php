@@ -17,7 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf_token'] ??
                 if ((int) $r['id'] === $id) { $old = $r['avatar']; break; }
             }
         }
-        $avatar = handle_upload('avatar_file', 'images', $old);
+        if (has_file_upload('avatar_file')) {
+            $avatar = handle_upload('avatar_file', 'images', $old);
+        } else {
+            $avatar = $old;
+        }
         content()->saveTestimonial([
             'name' => trim($_POST['name'] ?? ''),
             'role_label' => trim($_POST['role_label'] ?? ''),

@@ -219,9 +219,14 @@ class ContentRepository
 
     public function getFooterLinks(): array
     {
-        return $this->pdo->query(
-            'SELECT * FROM footer_links WHERE is_active = 1 ORDER BY sort_order ASC'
-        )->fetchAll();
+        $stmt = $this->pdo->query(
+            "SELECT * FROM footer_links
+             WHERE is_active = 1
+               AND url NOT IN ('tamu.php', 'undangan-portal.php')
+             ORDER BY sort_order ASC"
+        );
+
+        return $stmt->fetchAll();
     }
 
     public function allFooterLinks(): array

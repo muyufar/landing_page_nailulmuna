@@ -19,9 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf_token'] ??
                 if ((int) $r['id'] === $id) { $old = $r['image_path']; break; }
             }
         }
-        $img = handle_upload('image_file', 'images', $old);
-        if (!empty($_POST['image_url'])) {
+        if (has_file_upload('image_file')) {
+            $img = handle_upload('image_file', 'images', $old);
+        } elseif (!empty($_POST['image_url'])) {
             $img = trim($_POST['image_url']);
+        } else {
+            $img = $old;
         }
         if (!$img && !$id) {
             throw new RuntimeException('Gambar wajib diisi (upload atau URL).');

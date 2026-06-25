@@ -1,0 +1,170 @@
+/* Theme Presets — variasi gaya per tema */
+
+/* Background overlay when custom bg image */
+.inv-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    pointer-events: none;
+}
+.inv-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--color-primary) 0%, transparent 30%, transparent 70%, var(--color-primary) 100%);
+}
+
+.splash, .invitation, .btn-mute { position: relative; z-index: 1; }
+
+/* Default CSS ornaments (when no image uploaded) */
+.ornament-default {
+    margin: 0 auto 1rem;
+    opacity: 0.85;
+}
+.ornament-top-default {
+    width: min(200px, 70vw);
+    height: 24px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'%3E%3Cpath fill='black' d='M0 12h70l15-10 15 20 15-20 15 10h70'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background: var(--color-accent);
+}
+.ornament-divider-default {
+    width: min(160px, 60vw);
+    height: 16px;
+    background: var(--color-accent);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 16'%3E%3Cpath fill='black' d='M0 8h55l10-6 10 12 10-12 10 6h55'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+.ornament-bottom-default {
+    width: min(180px, 65vw);
+    height: 20px;
+    background: var(--color-accent);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 20'%3E%3Cpath fill='black' d='M0 10h60l12-8 12 16 12-16 12 8h60'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* Uploaded ornament images */
+.ornament-img {
+    display: block;
+    margin: 0 auto;
+    max-width: min(280px, 85vw);
+    height: auto;
+    object-fit: contain;
+}
+.ornament-top { margin-bottom: 1.25rem; }
+.ornament-bottom { margin: 1.5rem auto; }
+.ornament-divider { max-width: min(200px, 70vw); max-height: 48px; }
+
+.section-divider {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+}
+
+/* ── Theme: Hijau Emas (default) ── */
+.theme-hijau_emas .splash {
+    background: linear-gradient(160deg, var(--color-primary) 0%, #0a3d2e 50%, #052a20 100%);
+}
+.theme-hijau_emas .detail-card,
+.theme-hijau_emas .speaker-card,
+.theme-hijau_emas .rules-card {
+    border-radius: 12px;
+    border: 1px solid rgba(212,175,55,.25);
+}
+
+/* ── Theme: Biru Perak ── */
+.theme-biru_perak .splash {
+    background: linear-gradient(165deg, #1B3A5F 0%, #0f2847 60%, #0a1a30 100%);
+}
+.theme-biru_perak .detail-card,
+.theme-biru_perak .speaker-card,
+.theme-biru_perak .rules-card {
+    border-radius: 4px;
+    border: 1px solid rgba(184,197,214,.35);
+    background: rgba(15,40,71,.4);
+}
+.theme-biru_perak .btn-open,
+.theme-biru_perak .btn-rsvp {
+    border-radius: 4px;
+    background: linear-gradient(135deg, #B8C5D6, #8fa3bc);
+}
+
+/* ── Theme: Ungu Cream ── */
+.theme-ungu_cream .splash {
+    background: linear-gradient(150deg, #4A1942 0%, #3a1234 50%, #2a0d26 100%);
+}
+.theme-ungu_cream .detail-card,
+.theme-ungu_cream .speaker-card,
+.theme-ungu_cream .rules-card {
+    border-radius: 20px;
+    border: 1px solid rgba(245,230,211,.3);
+    background: rgba(74,25,66,.35);
+}
+.theme-ungu_cream .inv-theme,
+.theme-ungu_cream .mukaddimah { color: rgba(245,230,211,.85); }
+
+/* ── Theme: Maroon Emas ── */
+.theme-maroon_emas .splash {
+    background: linear-gradient(155deg, #5C1A1A 0%, #3d1111 55%, #2a0b0b 100%);
+}
+.theme-maroon_emas .arabic-quote {
+    border: 2px double rgba(212,175,55,.4);
+    border-radius: 0;
+}
+.theme-maroon_emas .count-item {
+    border-radius: 0;
+    border: 1px solid rgba(212,175,55,.4);
+}
+
+/* ── Theme: Teal Terracotta ── */
+.theme-teal_terracotta .splash {
+    background: linear-gradient(160deg, #0D4F4F 0%, #0a3a3a 50%, #062828 100%);
+}
+.theme-teal_terracotta .section-title::after { background: #E07A5F; }
+.theme-teal_terracotta .btn-open,
+.theme-teal_terracotta .btn-rsvp {
+    background: linear-gradient(135deg, #E07A5F, #c96a52);
+    color: #fff;
+}
+.theme-teal_terracotta .btn-maps {
+    background: #E07A5F;
+    color: #fff;
+}
+
+/* ── Theme: Hitam Emas ── */
+.theme-hitam_emas .splash {
+    background: linear-gradient(180deg, #1A1A1A 0%, #0d0d0d 100%);
+}
+.theme-hitam_emas .detail-card,
+.theme-hitam_emas .speaker-card,
+.theme-hitam_emas .rules-card,
+.theme-hitam_emas .count-item,
+.theme-hitam_emas .guestbook-item {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(201,162,39,.35);
+}
+.theme-hitam_emas .arabic-quote {
+    background: transparent;
+    border: 1px solid rgba(201,162,39,.4);
+}
+
+/* ── Theme: Custom ── */
+.theme-custom .splash {
+    background: linear-gradient(160deg, var(--color-primary) 0%, color-mix(in srgb, var(--color-primary) 70%, black) 100%);
+}
+
+@media (max-width: 480px) {
+    .ornament-img.ornament-top { max-width: 90vw; }
+    .inv-bg { opacity: 0.18; }
+}

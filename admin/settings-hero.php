@@ -6,9 +6,12 @@ $s = content()->getSettings();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf_token'] ?? '')) {
     try {
-        $bg = handle_upload('hero_bg_file', 'images', $s['hero_bg_image'] ?? null);
-        if (!empty($_POST['hero_bg_url'])) {
+        if (has_file_upload('hero_bg_file')) {
+            $bg = handle_upload('hero_bg_file', 'images', $s['hero_bg_image'] ?? null);
+        } elseif (!empty($_POST['hero_bg_url'])) {
             $bg = trim($_POST['hero_bg_url']);
+        } else {
+            $bg = $s['hero_bg_image'] ?? '';
         }
         content()->saveSettings([
             'hero_tagline' => trim($_POST['hero_tagline'] ?? ''),

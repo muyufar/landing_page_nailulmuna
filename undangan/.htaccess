@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Jangan rewrite file/folder yang ada
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Admin & API — biarkan akses langsung
+RewriteRule ^admin/ - [L]
+RewriteRule ^api/ - [L]
+RewriteRule ^assets/ - [L]
+RewriteRule ^database/ - [L]
+RewriteRule ^config/ - [L]
+RewriteRule ^includes/ - [L]
+
+# URL undangan publik: /landing%20page/undangan/haflah-2026
+RewriteRule ^([a-z0-9-]+)/?$ invitation.php?slug=$1 [L,QSA]
+
+# Root redirect ke admin
+RewriteRule ^$ admin/login.php [L]

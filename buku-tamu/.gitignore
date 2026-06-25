@@ -1,0 +1,17 @@
+# Runtime / uploads
+public/uploads/*
+!public/uploads/.gitkeep
+storage/*
+!storage/.gitkeep
+public/assets/img/pesantren-logo.*
+!public/assets/img/.gitkeep
+
+# Environment & secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

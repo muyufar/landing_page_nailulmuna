@@ -6,9 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf_token'] ??
     try {
         $s = content()->getSettings();
         $logo = $s['site_logo'] ?? 'assets/images/logo-nme.png';
-        $uploaded = handle_upload('site_logo_file', 'images', null);
-        if ($uploaded) {
-            $logo = $uploaded;
+        if (has_file_upload('site_logo_file')) {
+            $logo = handle_upload('site_logo_file', 'images', $logo);
         } elseif (!empty($_POST['site_logo_path'])) {
             $logo = trim($_POST['site_logo_path']);
         }
