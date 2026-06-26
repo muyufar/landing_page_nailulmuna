@@ -20,6 +20,7 @@ try {
     $galleryFasilitas = content()->getGallery('fasilitas');
     $articles = content()->getArticles(3);
     $footerLinks = content()->getFooterLinks();
+    $appButtons = content()->getLandingAppButtons();
 } catch (Throwable $e) {
     die('Database belum terpasang. <a href="install.php">Klik di sini untuk instalasi</a>.');
 }
@@ -332,6 +333,33 @@ function statCounterValue(string $text): array
     </div>
 </section>
 
+<?php if (!empty($appButtons)): ?>
+<!-- ========== LAYANAN DIGITAL ========== -->
+<section class="section-padding section-bg-cream" id="layanan-digital">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-subtitle"><?= e($s['section_apps_subtitle'] ?? 'Akses cepat ke aplikasi pesantren') ?></p>
+            <h2 class="section-title"><?= e($s['section_apps_title'] ?? 'Layanan Digital') ?></h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <?php foreach ($appButtons as $app): ?>
+            <div class="col-md-6 col-lg-5">
+                <div class="app-card h-100">
+                    <div class="app-card-icon"><i class="bi <?= e($app['icon']) ?>"></i></div>
+                    <h3 class="app-card-title"><?= e($app['label']) ?></h3>
+                    <p class="app-card-desc"><?= e($app['desc']) ?></p>
+                    <a href="<?= e(public_url($app['url'])) ?>" class="btn btn-cta-gold app-card-btn">
+                        Buka <?= e($app['label']) ?>
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <!-- ========== FOOTER ========== -->
 <footer class="footer-landing">
     <div class="container">
@@ -363,6 +391,13 @@ function statCounterValue(string $text): array
                     <li class="mb-2">
                         <a href="<?= e($link['url']) ?>" target="_blank" rel="noopener">
                             <i class="bi bi-chevron-right me-1"></i><?= e($link['label']) ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                    <?php foreach ($appButtons as $app): ?>
+                    <li class="mb-2">
+                        <a href="<?= e(public_url($app['url'])) ?>" rel="noopener">
+                            <i class="bi bi-chevron-right me-1"></i><?= e($app['label']) ?>
                         </a>
                     </li>
                     <?php endforeach; ?>

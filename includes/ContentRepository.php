@@ -219,12 +219,13 @@ class ContentRepository
 
     public function getFooterLinks(): array
     {
-        $stmt = $this->pdo->query(
+        $stmt = $this->pdo->prepare(
             "SELECT * FROM footer_links
              WHERE is_active = 1
                AND url NOT IN ('tamu.php', 'undangan-portal.php')
              ORDER BY sort_order ASC"
         );
+        $stmt->execute();
 
         return $stmt->fetchAll();
     }
@@ -232,6 +233,43 @@ class ContentRepository
     public function allFooterLinks(): array
     {
         return $this->pdo->query('SELECT * FROM footer_links ORDER BY sort_order ASC')->fetchAll();
+    }
+
+    /** Tombol Buku Tamu & Undangan di landing page (default: tersembunyi). */
+    public function getLandingAppButtons(): array
+    {
+        $s = $this->getSettings();
+        $buttons = [];
+
+        if (($s['show_buku_tamu'] ?? '0') === '1') {
+            $buttons[] = [
+                'key'   => 'buku_tamu',
+                'label' => trim($s['buku_tamu_button_text'] ?? '') ?: 'Buku Tamu Digital',
+                'url'   => 'tamu.php',
+                'icon'  => 'bi-journal-check',
+                'desc'  => trim($s['buku_tamu_desc'] ?? '') ?: 'Isi buku tamu digital untuk tamu pesantren.',
+            ];
+        }
+
+        if (($s['show_undangan'] ?? '0') === '1') {
+            $buttons[] = [
+                'key'   => 'undangan',
+                'label' => trim($s['undangan_button_text'] ?? '') ?: 'Undangan Digital',
+                'url'   => 'undangan-portal.php',
+                'icon'  => 'bi-envelope-heart',
+                'desc'  => trim($s['undangan_desc'] ?? '') ?: 'Undangan digital acara haflah dan kegiatan pesantren.',
+            ];
+        }
+
+        return $buttons;
+    }
+
+    public function isLandingAppVisible(string $app): bool
+    {
+        $s = $this->getSettings();
+        $key = $app === 'undangan' ? 'show_undangan' : 'show_buku_tamu';
+
+        return ($s[$key] ?? '0') === '1';
     }
 
     public function saveFooterLink(array $data, ?int $id = null): void

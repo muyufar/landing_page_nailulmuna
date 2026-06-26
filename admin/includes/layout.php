@@ -10,6 +10,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 $menu = [
     ['file' => 'index', 'label' => 'Dashboard', 'icon' => 'bi-speedometer2'],
     ['file' => 'settings-general', 'label' => 'Umum & Navbar', 'icon' => 'bi-gear'],
+    ['file' => 'settings-apps', 'label' => 'Layanan Digital', 'icon' => 'bi-phone'],
     ['file' => 'settings-appearance', 'label' => 'Tampilan & Ukuran', 'icon' => 'bi-sliders'],
     ['file' => 'settings-hero', 'label' => 'Hero Section', 'icon' => 'bi-image'],
     ['file' => 'settings-muassis', 'label' => 'Muassis', 'icon' => 'bi-person-badge'],

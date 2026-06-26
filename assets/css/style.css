@@ -758,3 +758,53 @@ body {
         font-size: 0.72rem;
     }
 }
+
+/* —— Layanan Digital (Buku Tamu & Undangan) —— */
+.app-card {
+    background: var(--white);
+    border: 1px solid rgba(6, 78, 59, 0.1);
+    border-radius: 1rem;
+    padding: 2rem 1.75rem;
+    text-align: center;
+    box-shadow: 0 8px 28px rgba(6, 78, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(6, 78, 59, 0.12);
+}
+
+.app-card-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: var(--emerald);
+    background: linear-gradient(135deg, var(--mint), rgba(212, 175, 55, 0.15));
+}
+
+.app-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--emerald-dark, #064e3b);
+    margin-bottom: 0.75rem;
+}
+
+.app-card-desc {
+    color: #5a6b63;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    min-height: 3rem;
+}
+
+.app-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

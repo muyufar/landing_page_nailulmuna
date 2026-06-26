@@ -44,7 +44,15 @@ INSERT INTO site_settings (setting_key, setting_value) VALUES
 ('footer_facebook', '#'),
 ('footer_instagram', '#'),
 ('footer_youtube', '#'),
-('footer_copyright', '© 2026 API Nailul Muna. Semua hak cipta dilindungi.');
+('footer_copyright', '© 2026 API Nailul Muna. Semua hak cipta dilindungi.'),
+('show_buku_tamu', '0'),
+('show_undangan', '0'),
+('section_apps_title', 'Layanan Digital'),
+('section_apps_subtitle', 'Akses cepat ke aplikasi pesantren'),
+('buku_tamu_button_text', 'Buku Tamu Digital'),
+('undangan_button_text', 'Undangan Digital'),
+('buku_tamu_desc', 'Isi buku tamu digital untuk tamu pesantren.'),
+('undangan_desc', 'Undangan digital acara haflah dan kegiatan pesantren.');
 
 INSERT INTO nav_items (label, url_hash, sort_order) VALUES
 ('Profil', '#profil', 1),
@@ -88,7 +96,7 @@ INSERT INTO articles (title, excerpt, category, image_path, link_url, published_
 ('Peringatan Maulid Nabi di Pesantren', 'Liputan kegiatan sholawat, tausiyah, dan pameran karya santri dalam rangka Maulid Nabi Muhammad SAW.', 'berita', 'https://images.unsplash.com/photo-1542816417-0983c9c9adbc?auto=format&fit=crop&w=800&q=80', '#', '2026-05-01'),
 ('Tips Muroja''ah Hafalan Efektif', 'Kajian praktis dari mudarris tahfidz tentang teknik muroja''ah pagi dan malam agar hafalan tetap mutqin.', 'tausiyah', 'https://images.unsplash.com/photo-1591604466377-1a63d39d7a98?auto=format&fit=crop&w=800&q=80', '#', '2026-04-20');
 
-INSERT INTO footer_links (label, url, sort_order) VALUES
-('Portal Wali Santri', '#', 1),
-('Dashboard Mudarris', '#', 2),
-('Panel Pengurus', '#', 3);
+INSERT INTO footer_links (label, url, sort_order, is_active) VALUES
+('Portal Wali Santri', '#', 1, 1),
+('Dashboard Mudarris', '#', 2, 1),
+('Panel Pengurus', '#', 3, 1);
