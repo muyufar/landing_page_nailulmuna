@@ -15,8 +15,10 @@
 -- Setelah import:
 --   Website      : http://localhost/landing%20page/
 --   Back Office  : http://localhost/landing%20page/panel.php  (admin / admin123)
---   Buku Tamu    : http://localhost/landing%20page/tamu.php   (admin/admin123, ndalem/ndalem123)
---   Undangan     : http://localhost/landing%20page/undangan-portal.php (admin / admin123)
+--   Buku Tamu    : http://localhost/landing%20page/buku-tamu/ (admin/admin123, ndalem/ndalem123)
+--   Undangan     : http://localhost/landing%20page/undangan/admin/login.php (admin / admin123)
+--
+-- Dokumentasi lengkap: database/README.md
 -- ============================================================
 
 SET NAMES utf8mb4;
