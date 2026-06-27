@@ -11,14 +11,14 @@ class UserModel
 
     public function getByRole(string $role): array
     {
-        $stmt = $this->db->prepare('SELECT id, username, name, role, created_at FROM users WHERE role = ? ORDER BY name ASC');
+        $stmt = $this->db->prepare('SELECT id, username, name, role, created_at FROM bt_users WHERE role = ? ORDER BY name ASC');
         $stmt->execute([$role]);
         return $stmt->fetchAll();
     }
 
     public function findById(int $id): ?array
     {
-        $stmt = $this->db->prepare('SELECT id, username, name, role, created_at FROM users WHERE id = ?');
+        $stmt = $this->db->prepare('SELECT id, username, name, role, created_at FROM bt_users WHERE id = ?');
         $stmt->execute([$id]);
         return $stmt->fetch() ?: null;
     }
@@ -32,10 +32,10 @@ class UserModel
     public function usernameExists(string $username, ?int $excludeId = null): bool
     {
         if ($excludeId) {
-            $stmt = $this->db->prepare('SELECT COUNT(*) FROM users WHERE username = ? AND id != ?');
+            $stmt = $this->db->prepare('SELECT COUNT(*) FROM bt_users WHERE username = ? AND id != ?');
             $stmt->execute([$username, $excludeId]);
         } else {
-            $stmt = $this->db->prepare('SELECT COUNT(*) FROM users WHERE username = ?');
+            $stmt = $this->db->prepare('SELECT COUNT(*) FROM bt_users WHERE username = ?');
             $stmt->execute([$username]);
         }
         return (int) $stmt->fetchColumn() > 0;
@@ -43,7 +43,7 @@ class UserModel
 
     public function countByRole(string $role): int
     {
-        $stmt = $this->db->prepare('SELECT COUNT(*) FROM users WHERE role = ?');
+        $stmt = $this->db->prepare('SELECT COUNT(*) FROM bt_users WHERE role = ?');
         $stmt->execute([$role]);
         return (int) $stmt->fetchColumn();
     }
@@ -51,7 +51,7 @@ class UserModel
     public function create(string $username, string $password, string $name, string $role = 'ndalem'): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO users (username, password, name, role) VALUES (?, ?, ?, ?)'
+            'INSERT INTO bt_users (username, password, name, role) VALUES (?, ?, ?, ?)'
         );
         $stmt->execute([
             $username,
@@ -64,13 +64,13 @@ class UserModel
 
     public function update(int $id, string $username, string $name): bool
     {
-        $stmt = $this->db->prepare('UPDATE users SET username = ?, name = ? WHERE id = ? AND role = ?');
+        $stmt = $this->db->prepare('UPDATE bt_users SET username = ?, name = ? WHERE id = ? AND role = ?');
         return $stmt->execute([$username, $name, $id, 'ndalem']);
     }
 
     public function updatePassword(int $id, string $password): bool
     {
-        $stmt = $this->db->prepare('UPDATE users SET password = ? WHERE id = ? AND role = ?');
+        $stmt = $this->db->prepare('UPDATE bt_users SET password = ? WHERE id = ? AND role = ?');
         return $stmt->execute([password_hash($password, PASSWORD_DEFAULT), $id, 'ndalem']);
     }
 
@@ -79,7 +79,7 @@ class UserModel
         if ($this->countByRole('ndalem') <= 1) {
             return false;
         }
-        $stmt = $this->db->prepare('DELETE FROM users WHERE id = ? AND role = ?');
+        $stmt = $this->db->prepare('DELETE FROM bt_users WHERE id = ? AND role = ?');
         return $stmt->execute([$id, 'ndalem']);
     }
 }

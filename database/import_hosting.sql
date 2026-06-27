@@ -1,38 +1,18 @@
--- ============================================================
--- IMPORT SEMUA DATABASE — Sekali Jalan (phpMyAdmin)
--- ============================================================
--- Isi file ini:
---   1. landing_page   → Website + Back Office CMS
---   2. buku_tamu      → Buku Tamu Digital
---   3. haflah_undangan → Undangan Digital Haflah
---
--- Cara pakai:
---   1. Pastikan MySQL/XAMPP sudah Start
---   2. Buka http://localhost/phpmyadmin
---   3. Tab "Import" (tidak perlu pilih database dulu)
---   4. Pilih file ini → Klik "Go" / "Kirim"
---
--- Setelah import:
---   Website      : http://localhost/landing%20page/
---   Back Office  : http://localhost/landing%20page/panel.php  (admin / admin123)
---   Buku Tamu    : http://localhost/landing%20page/buku-tamu/ (admin/admin123, ndalem/ndalem123)
---   Undangan     : http://localhost/landing%20page/undangan/admin/login.php (admin / admin123)
---
--- Dokumentasi lengkap: database/README.md
--- ============================================================
+-- IMPORT SATU DATABASE (Hosting) -- u700125577_santri
+-- Landing page + Buku Tamu + Undangan (bt_users, inv_users)
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ############################################################
--- DATABASE 1: landing_page
--- ############################################################
-
-CREATE DATABASE IF NOT EXISTS `landing_page`
+CREATE DATABASE IF NOT EXISTS `u700125577_santri`
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-USE `landing_page`;
+USE `u700125577_santri`;
+
+-- ############################################################
+-- DATABASE 1: landing_page
+-- ############################################################
 
 DROP TABLE IF EXISTS `admins`;
 DROP TABLE IF EXISTS `footer_links`;
@@ -238,24 +218,19 @@ INSERT INTO `footer_links` (`label`, `url`, `sort_order`, `is_active`) VALUES
 INSERT INTO `admins` (`username`, `password_hash`, `full_name`) VALUES
 ('admin', '$2y$10$AMXBaaakghxeFIjWtHULNuu/5Fna2mDb/8JfC9YC8XIa14lKqUE7G', 'Administrator');
 
+
 -- ############################################################
 -- DATABASE 2: buku_tamu
 -- ############################################################
-
-CREATE DATABASE IF NOT EXISTS `buku_tamu`
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
-
-USE `buku_tamu`;
 
 DROP TABLE IF EXISTS `whatsapp_logs`;
 DROP TABLE IF EXISTS `visitors`;
 DROP TABLE IF EXISTS `jadwal_terima_tamu`;
 DROP TABLE IF EXISTS `pengasuh_status`;
 DROP TABLE IF EXISTS `settings`;
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `bt_users`;
 
-CREATE TABLE `users` (
+CREATE TABLE `bt_users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
@@ -270,7 +245,7 @@ CREATE TABLE `pengasuh_status` (
     `message` VARCHAR(255) DEFAULT NULL,
     `updated_by` INT DEFAULT NULL,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (`updated_by`) REFERENCES `users`(`id`) ON DELETE SET NULL
+    FOREIGN KEY (`updated_by`) REFERENCES `bt_users`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `visitors` (
@@ -302,7 +277,7 @@ CREATE TABLE `visitors` (
     INDEX `idx_status` (`status`),
     INDEX `idx_created` (`created_at`),
     INDEX `idx_tujuan` (`tujuan_kunjungan`),
-    FOREIGN KEY (`approved_by`) REFERENCES `users`(`id`) ON DELETE SET NULL
+    FOREIGN KEY (`approved_by`) REFERENCES `bt_users`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `whatsapp_logs` (
@@ -335,7 +310,7 @@ CREATE TABLE `settings` (
     `setting_value` TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users` (`username`, `password`, `name`, `role`) VALUES
+INSERT INTO `bt_users` (`username`, `password`, `name`, `role`) VALUES
 ('admin', '$2y$10$Y7Pv5Pv3tdjiFxtyEJXCR.YGQEsL4RQJPw7oXry360RzwvZzqstru', 'Petugas Keamanan', 'admin'),
 ('ndalem', '$2y$10$AXmi2nh7fUSamKu3uYR7Pu5PwBSkLcxHGhYYzUOXephWJ4bP8oo0S', 'Asisten Pengasuh', 'ndalem');
 
@@ -369,21 +344,16 @@ INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
 ('wa_on_approve_guest', '1'),
 ('wa_jadwal_reminder_minutes', '60');
 
+
 -- ############################################################
 -- DATABASE 3: haflah_undangan
 -- ############################################################
 
-CREATE DATABASE IF NOT EXISTS `haflah_undangan`
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
-
-USE `haflah_undangan`;
-
 DROP TABLE IF EXISTS `guestbook_rsvp`;
 DROP TABLE IF EXISTS `events`;
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `inv_users`;
 
-CREATE TABLE `users` (
+CREATE TABLE `inv_users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `password_hash` VARCHAR(255) NOT NULL,
@@ -453,7 +423,7 @@ CREATE TABLE `guestbook_rsvp` (
     INDEX `idx_event_id` (`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users` (`username`, `password_hash`, `role`) VALUES
+INSERT INTO `inv_users` (`username`, `password_hash`, `role`) VALUES
 ('admin', '$2y$10$iYpoy8ff1yiAyROJP1PR.OxqWHeA02BtZlCGK5LOzJzK5XXjAYgkG', 'super_admin');
 
 INSERT INTO `events` (

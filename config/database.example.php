@@ -1,6 +1,6 @@
 <?php
 /**
- * Konfigurasi database — sesuaikan dengan environment hosting / XAMPP.
+ * Template konfigurasi database — Landing Page CMS
  */
 return [
     'host'     => '127.0.0.1',

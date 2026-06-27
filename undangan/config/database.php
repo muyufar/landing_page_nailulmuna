@@ -1,9 +1,9 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'haflah_undangan');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'u700125577_santri');
+define('DB_USER', 'u700125577_santri');
+define('DB_PASS', 'Landingpage@1990');
 define('DB_CHARSET', 'utf8mb4');
 
 define('APP_BASE', '/landing page/undangan');

@@ -29,14 +29,14 @@ function currentUser(): ?array
     if (empty($_SESSION['user_id'])) {
         return null;
     }
-    $stmt = getDB()->prepare('SELECT id, username, role FROM users WHERE id = ?');
+    $stmt = getDB()->prepare('SELECT id, username, role FROM inv_users WHERE id = ?');
     $stmt->execute([$_SESSION['user_id']]);
     return $stmt->fetch() ?: null;
 }
 
 function login(string $username, string $password): bool
 {
-    $stmt = getDB()->prepare('SELECT * FROM users WHERE username = ?');
+    $stmt = getDB()->prepare('SELECT * FROM inv_users WHERE username = ?');
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 

@@ -12,7 +12,7 @@ class Auth
     public static function login(string $username, string $password, string $requiredRole): ?array
     {
         $db = Database::connect();
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = ? AND role = ?');
+        $stmt = $db->prepare('SELECT * FROM bt_users WHERE username = ? AND role = ?');
         $stmt->execute([$username, $requiredRole]);
         $user = $stmt->fetch();
 
